@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package box.svc.tenant;
+option go_package="./pkg/tenant;tenant";
+
+service Tenant {
+    rpc Get(GetTenantRequest) returns (GetTenantResponse) {}
+}
+
+message GetTenantRequest {}
+message GetTenantResponse {}

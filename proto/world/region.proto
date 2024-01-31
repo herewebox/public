@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package box.svc.world;
+option go_package="./import/go/world;world";
+
+service Region {
+    rpc List(ListRegionRequest) returns (ListRegionResponse) {}
+    rpc Get(GetRegionRequest) returns (GetRegionResponse) {}
+}
+
+message regionBase {
+    string id = 1;
+    string name = 2;
+}
+
+message ListRegionRequest {}
+message ListRegionResponse {
+    repeated regionBase regions = 1;
+}
+
+message GetRegionRequest {
+    string id = 1;
+}
+message GetRegionResponse {
+    regionBase region = 1;
+}

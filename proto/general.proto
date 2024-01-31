@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package box.general;
+option go_package="./import/go;pkg";
+
+service General {
+    rpc InitDB(InitDBRequest) returns (InitDBResponse) {}
+}
+
+message InitDBRequest {}
+message InitDBResponse {
+    bool initialized = 1;
+}
