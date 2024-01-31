@@ -4,7 +4,7 @@
 // - protoc             v4.25.2
 // source: general.proto
 
-package pkg
+package box
 
 import (
 	context "context"

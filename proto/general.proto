@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package box.general;
-option go_package="./go/box;pkg";
+option go_package="./go/box;box";
 
 service General {
     rpc InitDB(InitDBRequest) returns (InitDBResponse) {}
