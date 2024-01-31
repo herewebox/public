@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package box.svc.account;
-option go_package="./import/go/account;account";
+option go_package="./go/box/account;account";
 
 service Account {
     rpc Get(GetAccountRequest) returns (GetAccountResponse) {}

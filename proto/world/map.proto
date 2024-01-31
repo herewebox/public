@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package box.svc.world;
-option go_package="./import/go/world;world";
+option go_package="./go/box/world;world";
 
 service Map {
     rpc Get(GetMapRequest) returns (GetMapResponse) {}
