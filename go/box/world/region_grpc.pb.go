@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Region_List_FullMethodName = "/box.svc.world.Region/List"
-	Region_Get_FullMethodName  = "/box.svc.world.Region/Get"
+	Region_List_FullMethodName = "/box.world.Region/List"
+	Region_Get_FullMethodName  = "/box.world.Region/Get"
 )
 
 // RegionClient is the client API for Region service.
@@ -129,7 +129,7 @@ func _Region_Get_Handler(srv interface{}, ctx context.Context, dec func(interfac
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Region_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "box.svc.world.Region",
+	ServiceName: "box.world.Region",
 	HandlerType: (*RegionServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

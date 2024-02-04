@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package box.svc.account;
+package box.account;
 option go_package="./go/box/account;account";
 
 service Account {

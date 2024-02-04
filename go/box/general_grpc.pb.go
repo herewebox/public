@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	General_InitDB_FullMethodName = "/box.general.General/InitDB"
+	General_InitDB_FullMethodName = "/box.General/InitDB"
 )
 
 // GeneralClient is the client API for General service.
@@ -96,7 +96,7 @@ func _General_InitDB_Handler(srv interface{}, ctx context.Context, dec func(inte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var General_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "box.general.General",
+	ServiceName: "box.General",
 	HandlerType: (*GeneralServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package box.svc.world;
+package box.world;
 option go_package="./go/box/world;world";
 
 service Region {

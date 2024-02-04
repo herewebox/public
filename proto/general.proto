@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package box.general;
+package box;
 option go_package="./go/box;box";
 
 service General {

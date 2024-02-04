@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Tenant_Get_FullMethodName = "/box.svc.tenant.Tenant/Get"
+	Tenant_Get_FullMethodName = "/box.tenant.Tenant/Get"
 )
 
 // TenantClient is the client API for Tenant service.
@@ -96,7 +96,7 @@ func _Tenant_Get_Handler(srv interface{}, ctx context.Context, dec func(interfac
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Tenant_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "box.svc.tenant.Tenant",
+	ServiceName: "box.tenant.Tenant",
 	HandlerType: (*TenantServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Map_Get_FullMethodName = "/box.svc.world.Map/Get"
+	Map_Get_FullMethodName = "/box.world.Map/Get"
 )
 
 // MapClient is the client API for Map service.
@@ -96,7 +96,7 @@ func _Map_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Map_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "box.svc.world.Map",
+	ServiceName: "box.world.Map",
 	HandlerType: (*MapServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

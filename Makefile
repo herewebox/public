@@ -51,6 +51,14 @@ ifndef PROTOC
 	PROTOC=protoc
 endif
 
+ifndef RUBY_PROTOC
+	RUBY_PROTOC=grpc_tools_ruby_protoc
+endif
+
+ifndef PYTHON_PROTOC
+	PYTHON_PROTOC=python -m grpc_tools.protoc
+endif
+
 ifndef GIT
 	GIT=git
 endif
@@ -64,14 +72,16 @@ ifndef DOCKER
 endif
 
 PROTO_DIR=$(PREFIX)/proto
-PROTO_GO_DIR=$(PREFIX)/pkg
+PROTO_GO_DIR=$(PREFIX)/go
+PROTO_RUBY_DIR=$(PREFIX)/ruby
+PROTO_PYTHON_DIR=$(PREFIX)/python
 DOC_DIR=$(PREFIX)/docs
 
-.PHONY: all summary proto_go doc
+.PHONY: all summary proto_go proto_ruby proto_python proto_doc
 .DEFAULT: all
 
 # Targets
-all: summary proto_go doc
+all: summary proto_go proto_ruby proto_python proto_doc
 
 summary:
 	@printf "\033[1;37m  == \033[1;32m$(PROJECT) \033[1;33m$(VERSION) \033[1;37m==\033[0m\n"
@@ -95,4 +105,28 @@ proto_go:
 	@GOOS=$(OS) GOARCH=$(ARCH) $(GO) mod tidy
 	@echo
 
-doc:
+proto_ruby:
+	@printf "\033[1;36m  Compiling protobuf definitions to ruby code ...\033[0m\n"
+	@mkdir -p $(PROTO_RUBY_DIR)/box/account
+	@mkdir -p $(PROTO_RUBY_DIR)/box/tenant
+	@mkdir -p $(PROTO_RUBY_DIR)/box/world
+	@$(RUBY_PROTOC) -I $(PROTO_DIR) --ruby_out=$(PROTO_RUBY_DIR)/box --grpc_out=$(PROTO_RUBY_DIR)/box general.proto
+	@$(RUBY_PROTOC) -I $(PROTO_DIR)/account --ruby_out=$(PROTO_RUBY_DIR)/box/account --grpc_out=$(PROTO_RUBY_DIR)/box/account account.proto
+	@$(RUBY_PROTOC) -I $(PROTO_DIR)/tenant --ruby_out=$(PROTO_RUBY_DIR)/box/tenant --grpc_out=$(PROTO_RUBY_DIR)/box/tenant tenant.proto
+	@$(RUBY_PROTOC) -I $(PROTO_DIR)/world --ruby_out=$(PROTO_RUBY_DIR)/box/world --grpc_out=$(PROTO_RUBY_DIR)/box/world map.proto
+	@$(RUBY_PROTOC) -I $(PROTO_DIR)/world --ruby_out=$(PROTO_RUBY_DIR)/box/world --grpc_out=$(PROTO_RUBY_DIR)/box/world region.proto
+	@echo
+
+proto_python:
+	@printf "\033[1;36m  Compiling protobuf definitions to python code ...\033[0m\n"
+	@mkdir -p $(PROTO_PYTHON_DIR)/box/account
+	@mkdir -p $(PROTO_PYTHON_DIR)/box/tenant
+	@mkdir -p $(PROTO_PYTHON_DIR)/box/world
+	@$(PYTHON_PROTOC) -I $(PROTO_DIR) --python_out=$(PROTO_PYTHON_DIR)/box --pyi_out=$(PROTO_PYTHON_DIR)/box --grpc_python_out=$(PROTO_PYTHON_DIR)/box general.proto
+	@$(PYTHON_PROTOC) -I $(PROTO_DIR)/account --python_out=$(PROTO_PYTHON_DIR)/box/account --pyi_out=$(PROTO_PYTHON_DIR)/box/account --grpc_python_out=$(PROTO_PYTHON_DIR)/box/account account.proto
+	@$(PYTHON_PROTOC) -I $(PROTO_DIR)/tenant --python_out=$(PROTO_PYTHON_DIR)/box/tenant --pyi_out=$(PROTO_PYTHON_DIR)/box/tenant --grpc_python_out=$(PROTO_PYTHON_DIR)/box/tenant tenant.proto
+	@$(PYTHON_PROTOC) -I $(PROTO_DIR)/world --python_out=$(PROTO_PYTHON_DIR)/box/world --pyi_out=$(PROTO_PYTHON_DIR)/box/world --grpc_python_out=$(PROTO_PYTHON_DIR)/box/world map.proto
+	@$(PYTHON_PROTOC) -I $(PROTO_DIR)/world --python_out=$(PROTO_PYTHON_DIR)/box/world --pyi_out=$(PROTO_PYTHON_DIR)/box/world --grpc_python_out=$(PROTO_PYTHON_DIR)/box/world region.proto
+	@echo
+
+proto_doc:

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package box.svc.tenant;
+package box.tenant;
 option go_package="./go/box/tenant;tenant";
 
 service Tenant {

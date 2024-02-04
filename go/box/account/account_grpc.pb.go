@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Account_Get_FullMethodName = "/box.svc.account.Account/Get"
+	Account_Get_FullMethodName = "/box.account.Account/Get"
 )
 
 // AccountClient is the client API for Account service.
@@ -96,7 +96,7 @@ func _Account_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Account_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "box.svc.account.Account",
+	ServiceName: "box.account.Account",
 	HandlerType: (*AccountServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
